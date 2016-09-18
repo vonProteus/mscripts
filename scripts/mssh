@@ -1,0 +1,28 @@
+#!/bin/bash
+SSH=/usr/bin/ssh
+SSHARGS=""
+
+
+while [[ $# -gt 1 ]]
+    do
+    key="$1"
+
+    case $key in
+        --tmux-name)
+            TMUXNAME="$2"
+            HASTMUXNAME=true
+            shift # past argument
+        ;;
+        *)
+            SSHARGS+=" $1"
+            # unknown option
+        ;;
+    esac
+        shift # past argument or value
+done
+
+if [[ $HASTMUXNAME ]] ; then
+    SSHARGS+=" -t \"tmux a -dt $TMUXNAME || tmux new -s $TMUXNAME\""
+fi
+
+echo "$SSH" $SSHARGS 

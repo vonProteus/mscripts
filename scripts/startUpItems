@@ -1,0 +1,31 @@
+#!/bin/bash
+#echo $@
+LS="ls -thoral"
+DIRS=();
+
+DIRS+=("Login:")
+DIRS+=(~/Library/LaunchAgents)
+DIRS+=(/Library/LaunchAgents)
+DIRS+=(/System/Library/LaunchAgents)
+DIRS+=("---------------------------------")
+DIRS+=("Boot:")
+DIRS+=(/Library/LaunchDaemons)
+DIRS+=(/System/Library/LaunchDaemons)
+DIRS+=(/Library/StartupItems)
+# DIRS+=()
+# DIRS+=()
+# DIRS+=()
+# DIRS+=()
+# DIRS+=()
+
+for i in "${!DIRS[@]}"; do
+    DIR=${DIRS[$i]}
+	echo $DIR
+	if [ -d "$DIR" ]; then
+    	if [ $1 ]; then
+    		$LS $DIR | grep $@	
+    	else
+		    $LS $DIR
+	    fi
+	fi
+done

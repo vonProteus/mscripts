@@ -1,0 +1,7 @@
+#!/bin/bash
+echo -----------------------------
+echo Public Facing IP Address
+echo -----------------------------
+wget http://ipinfo.io/ip -qO -
+echo
+

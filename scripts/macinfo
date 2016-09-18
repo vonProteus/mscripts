@@ -1,0 +1,42 @@
+echo -----------------------------
+echo OS Information Information
+echo -----------------------------
+sw_vers
+echo
+echo -----------------------------
+echo Airport Interface Information
+echo -----------------------------
+/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I
+echo
+echo -----------------------------
+echo Ping to OpenDNS IP address
+echo -----------------------------
+ping -c 5 208.67.222.222
+echo
+echo -----------------------------
+echo Ping to google.com by Name
+echo -----------------------------
+ping -c 5 google.com
+echo
+echo -----------------------------
+echo Public Facing IP Address
+echo -----------------------------
+wget http://ipinfo.io/ip -qO -
+echo
+echo
+echo -----------------------------
+echo Disk Space Information
+echo -----------------------------
+df -h
+echo
+echo -----------------------------
+echo Folder Size Information
+echo -----------------------------
+du -sh ~/Documents
+du -sh ~/Music
+du -sh ~/Pictures
+echo
+echo -----------------------------
+echo System Profile Information
+echo -----------------------------
+system_profiler

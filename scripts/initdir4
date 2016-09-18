@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ -z $1 ];then
+	echo "usage: initdir4 name [pathToCreata]"
+	exit
+fi
+
+in=.
+
+if [ $2 ];then
+	in=$2;
+fi
+
+
+
+mkdir $in/$1
+mkdir $in/tmp
+
+mkdir $in/$1/tmp
+mkdir $in/$1/documents
+mkdir $in/$1/movies
+mkdir $in/$1/music
+mkdir $in/$1/backup
+mkdir $in/$1/pictures
+
