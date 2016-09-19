@@ -2,6 +2,7 @@
 
 import sys, getopt, locale
 import plistlib
+from subprocess import Popen, PIPE
 
 
 from ToDo import ToDo
@@ -18,8 +19,9 @@ class thingspy:
     def main(self, argv):
         self.parseParam(argv)
         self.plist = plistlib.readPlist(self.toAddFile)
-        print(self.plist)
+        self.fillProjectsAndTodos()
 
+        self.addToThings()
 
 
     def parseParam(self, args):
@@ -35,7 +37,36 @@ class thingspy:
             elif opt in ("-a", "--to-add"):
                 self.toAddFile = arg
 
+    def fillProjectsAndTodos(self):
+        for pProject in self.plist["Projects"] :
+            self.projects.append(Project(pProject))
 
+        for pTodo in self.plist["To Dos"] :
+            self.todos.append(ToDo(pTodo))
+
+    def addToThings(self):
+        for project in self.projects:
+            applescript = "tell application \"Things\"\n"
+            applescript += project.makeAppleScript()
+            applescript += "\nend tell \n"
+            self.doAppleScript(applescript)
+
+        for todo in self.todos:
+            applescript = "tell application \"Things\"\n"
+            applescript += todo.makeAppleScript()
+            applescript += "\nend tell \n"
+            self.doAppleScript(applescript)
+
+    def doAppleScript(self, applescript):
+        cmd = []
+        cmd.append("osascript")
+        cmd.append("-e")
+        cmd.append(applescript)
+
+        process = Popen(cmd, stdout=PIPE)
+        out, err = process.communicate()
+        print("out:" + str(out))
+        print("err:" + str(err))
 
 
 if __name__ == "__main__":
