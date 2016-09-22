@@ -28,9 +28,9 @@ class Project(ToDo):
 
         ans += "set name of " + self.getMD5() + " to \"" + self.getName() + "\"\n"
 
-        # if self.getArea() != "" :
-        #     ans += "set " + self.getMD5Mark(self.getArea()) + " to make new area with properties {name:\"" + self.getArea() + "\"} \n"
-        #     ans += "set area of " + self.getMD5() + " to \"" + self.getArea() + "\"\n"
+        if self.getArea() != "" :
+            # ans += "set " + self.getMD5Mark(self.getArea()) + " to make new area with properties {name:\"" + self.getArea() + "\"} \n"
+            ans += "set area of " + self.getMD5() + " to area \"" + self.getArea() + "\"\n"
 
         ans += "set notes of " + self.getMD5() + " to \"" + self.getNotes() + "\"\n"
 
