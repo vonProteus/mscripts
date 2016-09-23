@@ -5,9 +5,11 @@ using terms from application "Mail"
 			repeat with i from 1 to the message_count
 				set this_message to item i of these_messages
 
+				set this_sender to the sender of this_message
+
 				set messageid to message id of this_message
 				-- Make URL (must use URL-encoded values for "<" and ">")
-				set urlText to "[url=message:%3C" & messageid & "%3E] mail [/url]"
+				set urlText to "[url=message:%3C" & messageid & "%3E] mail from " & this_sender & " [/url]"
 
 				try
 					set this_subject to (subject of this_message) as Unicode text
