@@ -6,7 +6,7 @@ IVIMOVEDDIR=$HOME/Movies/iVI_moved
 
 #mkdir ${ITUNESLIB}/_tmp/
 tree -h ${IVIDIR}
-time rsync -vazh --progress --partial ${IVIDIR} ${ITUNESLIB}/_tmp/ \
+time rsync -vazh --progress --partial ${IVIDIR}/* ${ITUNESLIB}/_tmp/ \
 	&& echo "rsync ok" \
 	&& tree -h  ${ITUNESLIB}/_tmp/ \
 	&& mv ${ITUNESLIB}/_tmp/* ${ITUNESLIB}/Automatically\ Add\ to\ iTunes.localized/ \
