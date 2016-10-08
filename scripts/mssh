@@ -3,7 +3,7 @@ SSH=/usr/bin/ssh
 SSHARGS=""
 
 
-while [[ $# -gt 1 ]]
+while [[ $# -gt 0 ]]
     do
     key="$1"
 
@@ -25,4 +25,4 @@ if [[ $HASTMUXNAME ]] ; then
     SSHARGS+=" -t \"tmux a -dt $TMUXNAME || tmux new -s $TMUXNAME\""
 fi
 
-echo "$SSH" $SSHARGS 
+"$SSH" $SSHARGS 
