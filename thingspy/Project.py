@@ -23,8 +23,15 @@ class Project(ToDo):
 
     def makeAppleScript(self):
         ans = "\n"
+        ans += "\n"
 
-        ans += "set " + self.getMD5() + " to make new project  \n"
+
+        ans += "set " + self.getMD5() + " to make new project "
+
+        if self.isToDay():
+            ans += "at beginning of list \"Today\""
+
+        ans += "\n"
 
         ans += "set name of " + self.getMD5() + " to \"" + self.getName() + "\"\n"
 
@@ -35,7 +42,7 @@ class Project(ToDo):
         ans += "set notes of " + self.getMD5() + " to \"" + self.getNotes() + "\"\n"
 
         if self.getDueDate() > 0:
-            ans += "set due date of " + self.getMD5() + " to (current date) + " + self.getDueDate() + " * days\n"
+            ans += "set due date of " + self.getMD5() + " to (current date) + " + str(self.getDueDate()) + " * days\n"
 
         tags = ""
         for tag in self.getTags():

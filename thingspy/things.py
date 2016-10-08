@@ -63,6 +63,8 @@ class thingspy:
         cmd.append("-e")
         cmd.append(applescript)
 
+        # print applescript
+
         process = Popen(cmd, stdout=PIPE)
         out, err = process.communicate()
         print("out:" + str(out))

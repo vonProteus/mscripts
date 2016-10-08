@@ -7,8 +7,10 @@
 		<dict>
 			<key>name</key>
 			<string>sample todos0</string>
-			<key>due date </key>
+			<key>due date</key>
 			<integer>5</integer>
+			<key>today</key>
+			<true/>
 			<key>tags</key>
 			<array>
 				<string>sampleTag4</string>
@@ -35,6 +37,8 @@ Phasellus fringilla est sed congue mollis. Nullam cursus aliquam arcu quis tinci
 Duis at congue nisl. In pharetra vitae nibh at finibus. Aenean ullamcorper purus a ultrices consectetur. Duis sed ultricies sapien, pulvinar vestibulum libero. Donec id neque nec mi eleifend blandit at id libero. Nullam scelerisque massa quis ultrices tincidunt. Aenean condimentum rhoncus fringilla.</string>
 			<key>due date</key>
 			<integer>3</integer>
+			<key>today</key>
+			<true/>
 			<key>tags</key>
 			<array>
 				<string>sampleTag1</string>
@@ -47,8 +51,10 @@ Duis at congue nisl. In pharetra vitae nibh at finibus. Aenean ullamcorper purus
 				<dict>
 					<key>name</key>
 					<string>sample todos1</string>
-					<key>due date </key>
+					<key>due date</key>
 					<integer>0</integer>
+					<key>today</key>
+					<true/>
 					<key>tags</key>
 					<array>
 						<string>sampleTag3</string>
@@ -60,8 +66,10 @@ Duis at congue nisl. In pharetra vitae nibh at finibus. Aenean ullamcorper purus
 				<dict>
 					<key>name</key>
 					<string>sample todos2</string>
-					<key>due date </key>
+					<key>due date</key>
 					<integer>0</integer>
+					<key>today</key>
+					<false/>
 					<key>tags</key>
 					<array>
 						<string>sampleTag2</string>
@@ -73,8 +81,10 @@ Duis at congue nisl. In pharetra vitae nibh at finibus. Aenean ullamcorper purus
 				<dict>
 					<key>name</key>
 					<string>sample todos3</string>
-					<key>due date </key>
+					<key>due date</key>
 					<integer>0</integer>
+					<key>today</key>
+					<false/>
 					<key>tags</key>
 					<array>
 						<string>sampleTag3</string>

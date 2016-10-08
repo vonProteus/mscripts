@@ -21,9 +21,14 @@ class ToDo:
         return self.plist["tags"]
 
     def getDueDate(self):
-        if "due date " not in self.plist:
+        if "due date" not in self.plist:
             return 0
-        return self.plist["due date "]
+        return self.plist["due date"]
+
+    def isToDay(self):
+        if "today" not in self.plist:
+            return False
+        return self.plist["today"]
 
     def getMD5(self):
         return self.md5
@@ -33,8 +38,14 @@ class ToDo:
 
     def makeAppleScript(self):
         ans = "\n"
+        ans += "\n"
 
-        ans += "set " + self.getMD5() +" to make new to do \n"
+        ans += "set " + self.getMD5() +" to make new to do "
+
+        if self.isToDay():
+            ans += "at beginning of list \"Today\""
+
+        ans += "\n"
 
         ans += "set name of " + self.getMD5() + " to \""+ self.getName() +"\"\n"
 
