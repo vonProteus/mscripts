@@ -22,7 +22,8 @@ while [[ $# -gt 0 ]]
 done
 
 if [[ $HASTMUXNAME ]] ; then
-    SSHARGS+=" -t \"tmux a -dt $TMUXNAME || tmux new -s $TMUXNAME\""
+    SSHARGS+=" -t tmux a -dt $TMUXNAME || tmux new -s $TMUXNAME "
 fi
 
+echo "$SSH" $SSHARGS 
 "$SSH" $SSHARGS 
