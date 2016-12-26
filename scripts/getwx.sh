@@ -9,8 +9,8 @@ WXFILE="/tmp/aprs.wx.xml"
 TIMECASH=$(( 60 * 10 )) # 5  minut
 
 
-NOW=$(( $(date -u +%s) - $TIMECASH ))
-LASTTIME=$(( $(xmlstarlet sel -t -v "/xml/entries/entry/time" $WXFILE ) + 1 ))
+NOW=$(date -u +%s)
+LASTTIME=$(( $(xmlstarlet sel -t -v "/xml/entries/entry/time" $WXFILE ) + $TIMECASH ))
 
 if (( $NOW > $LASTTIME )) 
 then
