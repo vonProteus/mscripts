@@ -10,11 +10,11 @@ TIMECASH=$(( 60 * 60 * 5 )) # 5  minut
 
 
 NOW=$(date -u +%s)
-LASTTIME=$(xml sel -t -v "/xml/entries/entry/time" $WXFILE )
+LASTTIME=$(xmlstarlet sel -t -v "/xml/entries/entry/time" $WXFILE )
 
 if (( $NOW - $TIMECASH > $LASTTIME +1 ))
 then
 	wget $WXAPRS -O $WXFILE
 fi
 
-xml sel -t -v "/xml/entries/entry/$NAMETAG" $WXFILE
+xmlstarlet sel -t -v "/xml/entries/entry/$NAMETAG" $WXFILE
