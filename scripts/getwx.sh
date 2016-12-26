@@ -15,7 +15,7 @@ LASTTIME=$(( $(xmlstarlet sel -t -v "/xml/entries/entry/time" $WXFILE ) + $TIMEC
 if (( $NOW > $LASTTIME )) 
 then
 	rm $WXFILE
-	wget $WXAPRS -O $WXFILE
+	wget -q $WXAPRS -O $WXFILE
 fi
 
 xmlstarlet sel -t -v "/xml/entries/entry/$NAMETAG" $WXFILE
