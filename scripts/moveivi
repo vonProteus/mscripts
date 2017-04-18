@@ -9,8 +9,8 @@ tree -h ${IVIDIR}
 time rsync -vazh --progress --partial ${IVIDIR}/* ${ITUNESLIB}/_tmp/ \
 	&& echo "rsync ok" \
 	&& tree -ha  ${ITUNESLIB}/_tmp/ \
-	&& mv ${ITUNESLIB}/_tmp/* ${ITUNESLIB}/Automatically\ Add\ to\ iTunes.localized/ \
-	&& echo "mv itunes ok" \
 	&& rsync -vazh --progress --partial ${IVIDIR}/* ${IVIMOVEDDIR}/ \
 	&& rm -fR ${IVIDIR}/* \
-	&& echo "mv ivi ok" 
+	&& echo "mv ivi ok" \
+	&& mv ${ITUNESLIB}/_tmp/* ${ITUNESLIB}/Automatically\ Add\ to\ iTunes.localized/ \
+	&& echo "mv itunes ok" \
