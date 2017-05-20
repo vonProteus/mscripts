@@ -22,14 +22,14 @@ using terms from application "Mail"
 					set this_content to (every character of content of this_message) as Unicode text
 					if this_content is in {"", "?"} then error
 				on error error_message
-					set this_content to ""
+					set this_content to "error message:" & error_message
 				end try
 
 				set this_content to this_content & "
 -------
 " & urlText
 
-				tell application "Things"
+				tell application "Things3"
 					set toDo to make new to do
 					set name of toDo to this_subject
 					set notes of toDo to this_content
