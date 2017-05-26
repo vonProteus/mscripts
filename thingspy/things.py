@@ -46,13 +46,13 @@ class thingspy:
 
     def addToThings(self):
         for project in self.projects:
-            applescript = "tell application \"Things\"\n"
+            applescript = "tell application \"Things3\"\n"
             applescript += project.makeAppleScript()
             applescript += "\nend tell \n"
             self.doAppleScript(applescript)
 
         for todo in self.todos:
-            applescript = "tell application \"Things\"\n"
+            applescript = "tell application \"Things3\"\n"
             applescript += todo.makeAppleScript()
             applescript += "\nend tell \n"
             self.doAppleScript(applescript)
