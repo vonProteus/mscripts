@@ -1,0 +1,32 @@
+#!/bin/bash
+
+BOOKEXT="pdf cbz mobi azw3 azw epub"
+
+export PYTHONIOENCODING=utf-8
+
+kindleunpack="python $HOME/dev/gits/KindleUnpack/lib/kindleunpack.py"
+
+tmpDir="/tmp/booksplit-$(uuidgen)"
+
+for entry in "."/*
+do 
+    if [ -f "$entry" ]; then 
+        filename=$(basename "$entry")
+        extension="${filename##*.}"
+        filename="${filename%.*}"
+        if echo $BOOKEXT | grep -i -w $extension > /dev/null; then
+              echo "$filename"
+              mkdir "$filename" 2> /dev/null
+              mv "$entry" "$filename"/
+        fi
+        
+        if echo "mobi" | grep -i -w $extension > /dev/null; then
+            mkdir $tmpDir
+            $kindleunpack -s "$filename/$filename.$extension" $tmpDir
+            mv "$filename/$filename.$extension" "$filename/$filename.orginal.$extension"
+            mv "$tmpDir/mobi7-$filename.mobi" "$filename/$filename.mobi"
+            mv "$tmpDir/mobi8-$filename.azw3" "$filename/$filename.azw3"
+            rm -fr $tmpDir
+        fi
+    fi
+done
