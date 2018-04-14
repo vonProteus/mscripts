@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 ITUNESLIB=/Volumes/iTunesLibray
 IVIDIR=$HOME/Movies/iVI
@@ -6,11 +6,15 @@ IVIMOVEDDIR=$HOME/Movies/iVI_moved
 
 #mkdir ${ITUNESLIB}/_tmp/
 tree -h ${IVIDIR}
-time rsync -vazh --progress --partial ${IVIDIR}/* ${ITUNESLIB}/_tmp/ \
-	&& echo "rsync ok" \
-	&& tree -ha  ${ITUNESLIB}/_tmp/ \
-	&& rsync -vazh --progress --partial ${IVIDIR}/* ${IVIMOVEDDIR}/ \
-	&& rm -fR ${IVIDIR}/* \
-	&& echo "mv ivi ok" \
-	&& mv ${ITUNESLIB}/_tmp/* ${ITUNESLIB}/Automatically\ Add\ to\ iTunes.localized/ \
-	&& echo "mv itunes ok" \
+du -h -d 0 ${IVIDIR}
+time rsync -vazh --progress --partial ${IVIDIR}/* ${ITUNESLIB}/_tmp/
+echo "$(date +%Y-%m-%d_%H:%M:%S) rsync ok"
+tree -ha  ${ITUNESLIB}/_tmp/
+rsync -vazh --progress --partial ${IVIDIR}/* ${IVIMOVEDDIR}/
+pushd $ITUNESLIB/_tmp/
+	find . -d -exec rm -dv $IVIDIR/{} \;
+popd
+#rm -fR ${IVIDIR}/*
+echo "mv ivi ok"
+mv ${ITUNESLIB}/_tmp/* ${ITUNESLIB}/Automatically\ Add\ to\ iTunes.localized/
+echo "mv itunes ok" 
