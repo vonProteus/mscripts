@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BOOKEXT="pdf cbz mobi azw3 azw epub"
+BOOKEXT="pdf cbz mobi azw3 azw epub prc"
 
 export PYTHONIOENCODING=utf-8
 
