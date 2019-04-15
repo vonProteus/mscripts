@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find . -regextype posix-egrep -regex ".*(bin|obj)" -type d -exec rm -drv {} \;
