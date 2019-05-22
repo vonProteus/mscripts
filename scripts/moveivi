@@ -7,6 +7,7 @@ IVIMOVEDDIR=$HOME/Movies/iVI_moved
 #mkdir ${ITUNESLIB}/_tmp/
 tree -h ${IVIDIR}
 du -h -d 0 ${IVIDIR}
+rsync -vazh --progress --partial ${IVIDIR}/* ${IVIMOVEDDIR}/
 time rsync -vazh --progress --partial ${IVIDIR}/* ${ITUNESLIB}/_tmp/
 echo "$(date +%Y-%m-%d_%H:%M:%S) rsync ok"
 tree -ha  ${ITUNESLIB}/_tmp/
