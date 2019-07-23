@@ -1,8 +1,21 @@
 #!/bin/bash
+HEADTREE=75
+TAILTREE=75
+
 
 if [ $# -eq 2 ]; then
-    tree -ha --du "$1"
-    time rsync -vazh --progress --partial "$@"
+	TREEFILE=$(mktemp -t treefile)
+	tree -ha --du "$1" >> $TREEFILE
+	if [ $(cat $TREEFILE | wc -l) -gt $[TAILTREE + HEADTREE] ]; then
+		head -${HEADTREE} $TREEFILE
+		echo ...
+		tail -${TAILTREE} $TREEFILE
+		echo Full tree in $TREEFILE
+	else
+		cat $TREEFILE
+	fi
+
+	time rsync -vazh --progress --partial "$@"
 else
-    time rsync "$@"
+	time rsync "$@"
 fi
