@@ -1,0 +1,45 @@
+#!/bin/bash
+
+SRC=$1
+TRGET=$2
+
+HEADTREE=75
+TAILTREE=1
+
+if ! [[  -d $SRC ]]; then
+    echo "$SRC is not a directory"
+    exit 1
+fi 
+
+if ! [[  -d $TRGET ]]; then
+    echo "$TRGET is not a directory"
+    exit 1
+fi 
+
+
+TREEFILE=$(mktemp -t treefile)
+tree -ha --du "$SRC" >> $TREEFILE
+if [ $(cat $TREEFILE | wc -l) -gt $[TAILTREE + HEADTREE] ]; then
+	head -${HEADTREE} $TREEFILE
+	echo ...
+	tail -${TAILTREE} $TREEFILE
+	echo Full tree in $TREEFILE
+else
+	cat $TREEFILE
+fi
+
+
+
+
+
+pushd $SRC
+
+FINDSTART=`date +%s`
+find . -type d -exec bash -c "mkdir -p \"${TRGET}{}\"" \;
+DIREND=`date +%s`
+find . -type f -exec bash -c "ln -h \"{}\" \"${TRGET}{}\"" \;
+LNEND=`date +%s`
+
+echo dirtime $((DIREND-FINDSTART))s
+echo linktime $((LNEND-DIREND))s
+echo alltime $((LNEND-FINDSTART))s
